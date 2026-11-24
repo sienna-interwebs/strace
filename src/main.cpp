@@ -1,16 +1,24 @@
 #include <iostream>
 #include <unistd.h>
+#include <sys/wait.h>
 
 int main() {
 
     pid_t x = fork();
 
+    int status{};
+
     if (x == 0) {
-        std::cout << "child process returned";
+        std::cout << "child: not done yet \n";
     }
     else {
-        std::cout << "parent process returned";
+        waitpid(x, &status, 0);
+        std::cout << "parent: child process finished \n";
+
     }
+
+
+
 
 
 }
